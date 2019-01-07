@@ -2,13 +2,21 @@ package com.paulo.cursomc.domain;
 
 import java.io.Serializable;
 
-public class Categoria implements Serializable{
-	
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Categoria implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	
+
 	public Categoria() {
 	}
 
@@ -17,7 +25,7 @@ public class Categoria implements Serializable{
 		this.id = id;
 		this.name = name;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -57,6 +65,6 @@ public class Categoria implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
 
 }
