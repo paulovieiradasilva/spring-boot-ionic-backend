@@ -8,13 +8,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.paulo.cursomc.domain.Categoria;
+import com.paulo.cursomc.domain.Produto;
 import com.paulo.cursomc.repositories.CategoriaRepository;
+import com.paulo.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
-	
+
 	@Autowired
 	CategoriaRepository categoriaRepository;
+
+	@Autowired
+	ProdutoRepository produtoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -25,8 +30,20 @@ public class Application implements CommandLineRunner {
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
 		
+		Produto p1 = new Produto(null, "Computador", 2000.0);
+		Produto p2 = new Produto(null, "Impressora", 800.0);
+		Produto p3 = new Produto(null, "Mouse", 80.0);
+		
+		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
+		cat2.getProdutos().addAll(Arrays.asList(p2));
+		
+		p1.getCategorias().addAll(Arrays.asList(cat1));
+		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
+		p3.getCategorias().addAll(Arrays.asList(cat1));
+		
+		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 	}
 
 }
-
