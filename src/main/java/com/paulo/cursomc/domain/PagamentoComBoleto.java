@@ -3,8 +3,6 @@ package com.paulo.cursomc.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.paulo.cursomc.domain.enums.EstadoPagamento;
