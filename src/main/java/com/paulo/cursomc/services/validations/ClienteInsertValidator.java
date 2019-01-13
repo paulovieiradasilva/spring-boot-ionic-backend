@@ -38,14 +38,14 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 		}
 
 		Cliente aux = clienteRepository.findByEmail(objDto.getEmail());
+		
 		if (aux != null) {
 			list.add(new FieldMessage("email", "Email já existente"));
 		}
 		
 		for (FieldMessage e : list) {
 			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName())
-					.addConstraintViolation();
+			context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName()).addConstraintViolation();
 		}
 		return list.isEmpty();
 	}
