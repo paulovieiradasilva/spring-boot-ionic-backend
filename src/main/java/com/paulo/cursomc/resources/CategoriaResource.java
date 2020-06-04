@@ -28,6 +28,13 @@ public class CategoriaResource {
 
 	@Autowired
 	private CategoriaService categoriaService;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> list = categoriaService.findAll();
+		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
+	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
@@ -58,13 +65,6 @@ public class CategoriaResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		categoriaService.delete(id);
 		return ResponseEntity.noContent().build();
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<CategoriaDTO>> findAll() {
-		List<Categoria> list = categoriaService.findAll();
-		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDTO);
 	}
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)

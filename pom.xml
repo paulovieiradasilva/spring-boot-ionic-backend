@@ -16,7 +16,7 @@
 	<description>Estudo de caso Java para curso de Modelagem Conseitual com UML</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -47,6 +47,7 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
